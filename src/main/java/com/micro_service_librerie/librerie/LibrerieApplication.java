@@ -2,7 +2,7 @@ package com.micro_service_librerie.librerie;
 
 
 
-import com.micro_service_librerie.librerie.Model.Livre;
+import com.micro_service_librerie.librerie.Model.Book;
 import com.micro_service_librerie.librerie.Model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class LibrerieApplication {
 	public Docket librerieApi(){
 		return new Docket (DocumentationType.SWAGGER_2)
 				 .additionalModels(
-					typeResolver.resolve(Livre.class),
+					typeResolver.resolve(Book.class),
 					typeResolver.resolve(User.class))
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("com.micro_service_librerie.librerie.Controller"))

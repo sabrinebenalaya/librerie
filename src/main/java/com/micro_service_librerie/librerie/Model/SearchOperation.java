@@ -1,4 +1,4 @@
-package com.micro_service_librerie.librerie.Serie;
+package com.micro_service_librerie.librerie.Model;
 
 public enum SearchOperation {
     GREATER_THAN,

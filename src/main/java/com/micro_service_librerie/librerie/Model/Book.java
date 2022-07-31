@@ -16,49 +16,53 @@ import lombok.ToString;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "livre")
-@JsonFilter("livreFilter")
-public class Livre implements Serializable{
+@Table(name = "book")
+@JsonFilter("BookFilter")
+public class Book implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idLivre")
-    private Long idLivre;
+    @Column(name = "idBook")
+    private Long idBook;
 
-    @NotBlank
     @Size(min = 3)
-    @Column(name = "titre", unique=true, length = 100)
-    private String titre;
+    @NotBlank(message = "Please enter the title of the book")
+    @Column(name = "title", unique=true, length = 100)
+    private String title;
 
    
     @NotBlank
     @Size(min = 3)
-    @Column(name = "auteur",  length = 50)
-    private String auteur;
+    @NotBlank(message = "Please enter the author of the book")
+    @Column(name = "author",  length = 50)
+    private String author;
 
-    @NotBlank
+    @NotBlank(message = "Please enter the gender of the book")
     @Size(min = 3)
-    @Column(name = "genre",  length = 50)
-    private String genre;
+    @Column(name = "gender",  length = 50)
+    private String gender;
 
     @Min(50)
-    @Column(name = "nbrpage")
-    private Integer nbrpage;
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @Min(10)
+    @NotNull
+    @Column(name = "price")
+    private Integer price;
 
     @ManyToMany(fetch = FetchType.LAZY,
-                cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-                },
-                mappedBy = "livres")
+    cascade = CascadeType.ALL,
+                mappedBy = "books")
     @JsonIgnore
     @EqualsAndHashCode.Exclude 
     @ToString.Exclude 
-    private Set<User> users = new HashSet<>();
+    private Set<Ordder> order = new HashSet<>();
 }

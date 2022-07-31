@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.micro_service_librerie.librerie.Serie.SearchOperation;
+import com.micro_service_librerie.librerie.Model.SearchOperation;
 
 public class LibrerieSpecification<T> implements Specification<T>{
 

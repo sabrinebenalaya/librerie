@@ -1,7 +1,6 @@
 package com.micro_service_librerie.librerie.Model;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 import lombok.*;
@@ -28,31 +27,32 @@ public class User  implements Serializable{
     @Column(name = "idUser")
     private Long idUser;
 
-    @NotBlank
+    @NotBlank(message ="Please enter your firstname")
     @Column(name = "firstname", length = 40)
     private String firstname;
 
-    @NotBlank(message = "veuillez saisir le nom du user")
+    @NotBlank(message = "Please enter your lastname")
     @Column(name = "lastname", length = 40)
     private String lastname;
     
-    @NotBlank(message = "veuillez saisir l'email du user")
+    @NotBlank(message = "Please enter your email")
     @Column(name = "email", unique=true)
     @Email
     private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-    cascade = {
-        CascadeType.PERSIST,
-        CascadeType.MERGE
-    })
-    @JoinTable( name = "User_Livre",
-                joinColumns = { @JoinColumn(name = "idUser") },
-                inverseJoinColumns = { @JoinColumn(name = "idLivre") })
-    private Set<Livre> livres = new HashSet<>();
+    @NotBlank(message = "Please enter your username")
+    @Column(name = "username", length = 40)
+    private String username;
 
-    public void addLivre(Livre livre) {
-        livres.add(livre);
-    }
+    @NotBlank(message = "Please enter your password")
+    @Column(name = "password", length = 40)
+    private String password;
+
+
+    @OneToMany(mappedBy="user", 
+               fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)
+    private Set<Ordder> orders;
+  
     
 }

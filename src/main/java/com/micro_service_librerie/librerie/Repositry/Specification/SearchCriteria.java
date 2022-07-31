@@ -1,6 +1,6 @@
 package com.micro_service_librerie.librerie.Repositry.Specification;
 
-import com.micro_service_librerie.librerie.Serie.SearchOperation;
+import com.micro_service_librerie.librerie.Model.SearchOperation;
 
 import lombok.Data;
 

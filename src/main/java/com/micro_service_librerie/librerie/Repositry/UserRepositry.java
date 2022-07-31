@@ -20,4 +20,6 @@ public interface UserRepositry extends JpaRepository<User,Long>, JpaSpecificatio
 
     boolean existsByEmail(String email);
 
+    boolean existsByUsername(String username);
+
 }
